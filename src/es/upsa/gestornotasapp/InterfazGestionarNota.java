@@ -14,4 +14,3 @@ public interface InterfazGestionarNota {
     void editarNota();
     void eliminarNota();
 }
-

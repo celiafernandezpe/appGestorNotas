@@ -100,4 +100,42 @@ public class Gestor {
         }
         return new ArrayList<>();
     }
+    
+    public void verNotasPorCategoria(String nombreCategoria, UsuarioNormal usuario) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    boolean categoriaEncontrada = false;
+
+    for (Categoria categoria : categorias) {
+        if (categoria.getNombre().equals(nombreCategoria)) {
+            categoriaEncontrada = true;
+            List<Nota> notas = categoria.getNotas();
+
+            // Comprobar si la categoría tiene notas
+            if (notas.isEmpty()) {
+                System.out.println("\nNo hay notas en la categoría " + nombreCategoria);
+                return;
+            }
+
+            // Mostrar las notas de la categoría
+            for (Nota n : notas) {
+                if (n.getUsuario().equals(usuario)) {
+                    System.out.println("\nTítulo: " + n.getTitulo());
+                    System.out.println("Categoría: " + categoria.getNombre());
+                    System.out.println("Contenido: " + n.getContenido());
+                    System.out.println("Fecha creación: " + n.getFechaCreacion().format(formatter));
+                    System.out.println("Fecha modificación: " + n.getFechaUltimaModificacion().format(formatter));
+                    System.out.println("Usuario: " + n.getUsuario().getNombre());
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    if (!categoriaEncontrada) {
+        System.out.println("\nLa categoría " + nombreCategoria + " no existe.");
+    }
+}
+
+    
 }

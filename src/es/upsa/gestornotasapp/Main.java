@@ -107,6 +107,9 @@ public class Main {
                                             usuarioLogueado.eliminarNota();
                                             break;
                                         case 5:
+                                            usuarioLogueado.verNotasPorCategoria();
+                                            break;
+                                        case 6:
                                             continuarUsuario = false;
                                             break;
                                         default:
